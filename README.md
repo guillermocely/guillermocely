@@ -4,6 +4,7 @@
 </p>
 <p align="center">
   Desarrollador full-stack en formación 🚀<br>
+  Estudiante de desarrollo web Full Stack en Henry.<br>
   Aprendiendo a construir aplicaciones completas, de la base de datos a la interfaz.
 </p>
 
