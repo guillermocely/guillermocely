@@ -1,4 +1,7 @@
-<h1 align="center">¡Hola! Soy Guillermo 👋</h1>
+<h1 align="center">¡Hola! Soy👋</h1>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=600&lines=Guillermo+Cely;Desarrollador+Web;JavaScript+%7C+HTML+%7C+CSS" alt="Guillermo Cely">
+</p>
 
 <p align="center">
   Desarrollador full-stack en formación 🚀<br>
