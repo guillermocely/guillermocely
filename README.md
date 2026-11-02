@@ -1,6 +1,6 @@
 <h1 align="center">¡Hola! Soy👋</h1>
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=600&lines=Guillermo+Cely;Desarrollador+Full+Stack;JavaScript+%7C+HTML+%7C+CSS" alt="Guillermo Cely">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=900&lines=Guillermo+Cely;Desarrollador+Full+Stack;Estudiante+de+Henry;JavaScript+%7C+TypeScript+%7C+React;HTML+%7C+CSS+%7C+Node.js;Express+%7C+PostgreSQL+%7C+Firebase;Git+%7C+GitHub+%7C+AWS" alt="Guillermo Cely">
 </p>
 <p align="center">
   Desarrollador full-stack en formación 🚀<br>
