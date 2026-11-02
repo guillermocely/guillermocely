@@ -38,7 +38,16 @@ jobs:
           owner = os.environ["OWNER"]
           token = os.environ["GITHUB_TOKEN"]
 
-          # 1. Pedir tus repositorios a la API de GitHub (ordenados por último push)
+          # 1. Buscar el archivo del README sin importar mayúsculas/minúsculas
+          nombre_readme = None
+          for archivo in os.listdir("."):
+              if archivo.lower() == "readme.md":
+                  nombre_readme = archivo
+                  break
+          if nombre_readme is None:
+              raise SystemExit("No encontré ningún README.md / readme.md en el repositorio")
+
+          # 2. Pedir tus repositorios a la API de GitHub (ordenados por último push)
           url = f"https://api.github.com/users/{owner}/repos?sort=pushed&per_page=100&type=owner"
           peticion = urllib.request.Request(
               url,
@@ -50,13 +59,13 @@ jobs:
           with urllib.request.urlopen(peticion) as respuesta:
               repos = json.load(respuesta)
 
-          # 2. Quitar forks y el propio repo del perfil, y quedarnos con los 6 más recientes
+          # 3. Quitar forks y el propio repo del perfil, y quedarnos con los 6 más recientes
           repos = [
               r for r in repos
               if not r["fork"] and r["name"].lower() != owner.lower()
           ][:6]
 
-          # 3. Construir la tabla en Markdown
+          # 4. Construir la tabla en Markdown
           lineas = [
               "| Repositorio | Descripción | Lenguaje | ⭐ | Última actividad |",
               "|---|---|---|---|---|",
@@ -70,17 +79,17 @@ jobs:
               )
           tabla = "\n".join(lineas)
 
-          # 4. Reemplazar lo que haya entre los marcadores del README
-          with open("README.md", encoding="utf-8") as archivo:
+          # 5. Reemplazar lo que haya entre los marcadores del README
+          with open(nombre_readme, encoding="utf-8") as archivo:
               contenido = archivo.read()
 
           patron = re.compile(r"(<!-- REPOS:START -->).*?(<!-- REPOS:END -->)", re.S)
           if not patron.search(contenido):
-              raise SystemExit("No encontré los marcadores REPOS:START / REPOS:END en README.md")
+              raise SystemExit("No encontré los marcadores REPOS:START / REPOS:END en el README")
 
           nuevo = patron.sub(lambda m: m.group(1) + "\n" + tabla + "\n" + m.group(2), contenido)
 
-          with open("README.md", "w", encoding="utf-8") as archivo:
+          with open(nombre_readme, "w", encoding="utf-8") as archivo:
               archivo.write(nuevo)
           PY
 
@@ -92,7 +101,7 @@ jobs:
           if git diff --quiet; then
             echo "No hay cambios, nada que subir."
           else
-            git add README.md
+            git add -A
             git commit -m "chore: actualizar repositorios del README"
             git push
           fi
